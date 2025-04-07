@@ -4,6 +4,9 @@
  */
 package fuvar2;
 
+import java.io.FileNotFoundException;
+import java.util.List;
+
 /**
  *
  * @author patri
@@ -13,8 +16,10 @@ public class Fuvar2 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args) throws FileNotFoundException {
+       List<Fuvar> fuvarok = Fuvar.LoadDatas("fuvar.csv");
+       
+        System.out.println("3.Feladat: " + fuvarok.size() + " Fuvar");
     }
     
 }
