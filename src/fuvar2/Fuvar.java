@@ -4,9 +4,14 @@
  */
 package fuvar2;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -54,5 +59,26 @@ public class Fuvar {
         this.viteldij = Double.parseDouble(db[4].replace(",", "."));
         this.borravalo = Double.parseDouble(db[5].replace(",", "."));
         this.fizetesmod = db[6];
+    }
+    
+    // Feltöltő osztályszintű metódus
+    
+    public static List<Fuvar>LoadDatas(String fajlneve) throws FileNotFoundException{
+        List<Fuvar> Fuvarok = new ArrayList<>();
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader(fajlneve));
+            String sor;
+            String fejlec = reader.readLine();
+            while((sor = reader.readLine()) != null){
+                Fuvar f = new Fuvar(sor);
+                Fuvarok.add(f);
+            }
+            reader.close();
+            
+        }
+        catch(Exception err){
+            System.out.println("Olvasási hiba" + err.getMessage()   );
+        }
+        return Fuvarok;
     }
 }
